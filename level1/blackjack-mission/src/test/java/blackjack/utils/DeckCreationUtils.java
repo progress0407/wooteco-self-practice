@@ -4,7 +4,7 @@ import blackjack.Card;
 import blackjack.MockDeck;
 import java.util.Arrays;
 
-public class CreationUtils {
+public class DeckCreationUtils {
 
     public static MockDeck createMockDeck(int... scores) {
 

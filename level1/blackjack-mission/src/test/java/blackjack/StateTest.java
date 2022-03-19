@@ -1,6 +1,6 @@
 package blackjack;
 
-import static blackjack.utils.CreationUtils.createMockDeck;
+import static blackjack.utils.DeckCreationUtils.createMockDeck;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import blackjack.state.Blackjack;
@@ -8,9 +8,9 @@ import blackjack.state.Bust;
 import blackjack.state.Normal;
 import blackjack.state.Ready;
 import blackjack.state.State;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("NonAsciiCharacters")
 class StateTest {
 
     @Test

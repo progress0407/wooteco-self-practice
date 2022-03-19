@@ -1,16 +1,16 @@
 package blackjack;
 
-import static java.lang.System.out;
+import static blackjack.state.StateContainer.READY;
 
 import blackjack.state.Finished;
 import blackjack.state.State;
-import blackjack.state.StateContainer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Hand {
 
-    private State state = StateContainer.READY;
+    private State state = READY;
     private final List<Card> cards = new ArrayList<>();
 
     public int score() {
@@ -19,12 +19,14 @@ public class Hand {
                 .sum();
     }
 
+    public void receiveCard(Card card) {
+        cards.add(card);
+    }
+
     public void receiveCards(Deck deck) {
         int receiveTimes = state.receiveTimes();
         for (int n = 0; n < receiveTimes; n++) {
-            Card card = deck.drawCard();
-            out.println(card + "를 넣었습니다 !");
-            cards.add(card);
+            cards.add(deck.drawCard());
         }
         nextState();
     }
@@ -51,5 +53,9 @@ public class Hand {
 
     public MatchResult match(Hand dealerHand) {
         return MatchResult.from(this, dealerHand);
+    }
+
+    public List<Card> getCards() {
+        return Collections.unmodifiableList(cards);
     }
 }
