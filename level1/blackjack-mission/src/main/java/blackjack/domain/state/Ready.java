@@ -1,9 +1,6 @@
-package blackjack.state;
+package blackjack.domain.state;
 
-import static blackjack.state.StateContainer.BLACKJACK;
-import static blackjack.state.StateContainer.NORMAL;
-
-import blackjack.Hand;
+import blackjack.domain.card.Hand;
 
 public class Ready extends UnFinished {
 
@@ -15,9 +12,9 @@ public class Ready extends UnFinished {
     @Override
     public void nextState(Hand hand) {
         if (hand.score() == 21) {
-            hand.setState(BLACKJACK);
+            hand.setState(StateContainer.BLACKJACK);
             return;
         }
-        hand.setState(NORMAL);
+        hand.setState(StateContainer.NORMAL);
     }
 }

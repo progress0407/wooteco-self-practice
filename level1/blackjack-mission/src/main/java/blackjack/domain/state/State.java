@@ -1,6 +1,6 @@
-package blackjack.state;
+package blackjack.domain.state;
 
-import blackjack.Hand;
+import blackjack.domain.card.Hand;
 
 public interface State {
 

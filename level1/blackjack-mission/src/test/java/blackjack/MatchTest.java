@@ -1,6 +1,13 @@
 package blackjack;
 
-import static blackjack.utils.DeckCreationUtils.createMockDeck;
+import static blackjack.domain.card.Denomination.ACE;
+import static blackjack.domain.card.Denomination.EIGHT;
+import static blackjack.domain.card.Denomination.JACK;
+import static blackjack.domain.card.Denomination.NINE;
+import static blackjack.domain.card.Denomination.QUEEN;
+import static blackjack.domain.card.Denomination.TEN;
+import static blackjack.utils.CreationUtils.createCard;
+import static blackjack.utils.CreationUtils.createMockDeck;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -16,7 +23,7 @@ class MatchTest {
 
     @Nested
     @DisplayName("플레이어가 배팅금액 만원으로")
-    static class PlayerWith10000 {
+    class PlayerWith10000 {
 
         private Dealer dealer = new Dealer();
         private Player player;
@@ -29,11 +36,11 @@ class MatchTest {
         @Test
         @DisplayName("이길 경우 수익은 10000 원이다")
         void test1() {
-            dealer.receiveCards(new Card(10));
-            dealer.receiveCards(new Card(8));
+            dealer.receiveCards(createCard(JACK));
+            dealer.receiveCards(createCard(EIGHT));
 
-            player.receiveCards(new Card(10));
-            player.receiveCards(new Card(9));
+            player.receiveCards(createCard(QUEEN));
+            player.receiveCards(createCard(NINE));
 
             Match match = Match.from(dealer, List.of(player));
 
@@ -47,8 +54,8 @@ class MatchTest {
         @Test
         @DisplayName("블랙잭으로 이길 경우 수익은 15000 원이다")
         void test2() {
-            dealer.receiveCards(createMockDeck(10, 8));
-            player.receiveCards(createMockDeck(10, 11));
+            dealer.receiveCards(createMockDeck(JACK, EIGHT));
+            player.receiveCards(createMockDeck(QUEEN, ACE));
 
             Match match = Match.from(dealer, List.of(player));
 
@@ -62,8 +69,8 @@ class MatchTest {
         @Test
         @DisplayName("질 경우 수익은 -10000 원이다")
         void test3() {
-            dealer.receiveCards(createMockDeck(10, 9));
-            player.receiveCards(createMockDeck(10, 8));
+            dealer.receiveCards(createMockDeck(TEN, NINE));
+            player.receiveCards(createMockDeck(JACK, EIGHT));
 
             Match match = Match.from(dealer, List.of(player));
 

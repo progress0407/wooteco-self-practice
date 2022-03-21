@@ -1,4 +1,4 @@
-package blackjack.state;
+package blackjack.domain.state;
 
 abstract public class StateContainer {
 

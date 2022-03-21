@@ -1,8 +1,8 @@
 package blackjack.participant;
 
-import blackjack.Card;
-import blackjack.Deck;
-import blackjack.Hand;
+import blackjack.domain.card.Card;
+import blackjack.domain.card.Deck;
+import blackjack.domain.card.Hand;
 
 abstract public class Participant {
     private final String name;

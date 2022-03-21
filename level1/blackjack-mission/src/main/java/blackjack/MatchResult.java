@@ -1,8 +1,9 @@
 package blackjack;
 
-import static blackjack.state.StateContainer.BLACKJACK;
-import static blackjack.state.StateContainer.BUST;
+import static blackjack.domain.state.StateContainer.BLACKJACK;
+import static blackjack.domain.state.StateContainer.BUST;
 
+import blackjack.domain.card.Hand;
 import java.util.Arrays;
 import java.util.function.BiPredicate;
 

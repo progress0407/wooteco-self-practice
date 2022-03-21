@@ -1,9 +1,10 @@
-package blackjack;
+package blackjack.domain.card;
 
-import static blackjack.state.StateContainer.READY;
+import static blackjack.domain.state.StateContainer.READY;
 
-import blackjack.state.Finished;
-import blackjack.state.State;
+import blackjack.MatchResult;
+import blackjack.domain.state.Finished;
+import blackjack.domain.state.State;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,12 +12,43 @@ import java.util.List;
 public class Hand {
 
     private State state = READY;
-    private final List<Card> cards = new ArrayList<>();
+    private int score = 0;
+    private List<Card> cards = new ArrayList<>();
+
+    public Hand() {
+    }
+
+    public Hand(List<Card> cards) {
+        this.cards = cards;
+    }
 
     public int score() {
+        if (hasAce()) {
+            return sumIncludingAce();
+        }
+
+        return cardScoreTotal();
+    }
+
+    private int cardScoreTotal() {
         return cards.stream()
-                .mapToInt(Card::getScore)
+                .mapToInt(Card::score)
                 .sum();
+    }
+
+    private boolean hasAce() {
+        return cards.stream()
+                .anyMatch(Card::isAce);
+    }
+
+    private int sumIncludingAce() {
+        int cardScoreTotal = cardScoreTotal();
+        int aceHighScore = cardScoreTotal + (11 - 1);
+
+        if (aceHighScore <= 21) {
+            return aceHighScore;
+        }
+        return cardScoreTotal;
     }
 
     public void receiveCard(Card card) {

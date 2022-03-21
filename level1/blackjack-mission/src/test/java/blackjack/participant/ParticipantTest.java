@@ -1,8 +1,12 @@
 package blackjack.participant;
 
-import blackjack.Card;
+import static blackjack.domain.card.Denomination.EIGHT;
+import static blackjack.utils.CreationUtils.createCard;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import blackjack.domain.card.Card;
+import blackjack.domain.card.Denomination;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,10 +32,9 @@ class ParticipantTest {
     @Test
     @DisplayName("참가자는 카드를 받을 수 있다")
     void test() {
-        Card card = new Card(4);
+        Card card = createCard(EIGHT);
         participant.receiveCards(card);
         List<Card> findCards = participant.getHand().getCards();
-        Assertions.assertThat(findCards).contains(card);
+        assertThat(findCards).contains(card);
     }
-
 }

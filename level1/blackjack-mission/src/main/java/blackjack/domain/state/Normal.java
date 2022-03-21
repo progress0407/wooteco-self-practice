@@ -1,8 +1,8 @@
-package blackjack.state;
+package blackjack.domain.state;
 
-import static blackjack.state.StateContainer.BUST;
+import static blackjack.domain.state.StateContainer.BUST;
 
-import blackjack.Hand;
+import blackjack.domain.card.Hand;
 
 public class Normal extends UnFinished {
 

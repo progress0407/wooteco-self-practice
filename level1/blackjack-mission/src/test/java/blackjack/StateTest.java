@@ -1,13 +1,22 @@
 package blackjack;
 
-import static blackjack.utils.DeckCreationUtils.createMockDeck;
+import static blackjack.domain.card.Denomination.ACE;
+import static blackjack.domain.card.Denomination.EIGHT;
+import static blackjack.domain.card.Denomination.FIVE;
+import static blackjack.domain.card.Denomination.NINE;
+import static blackjack.domain.card.Denomination.SIX;
+import static blackjack.domain.card.Denomination.TEN;
+import static blackjack.domain.card.Denomination.THREE;
+import static blackjack.domain.card.Denomination.TWO;
+import static blackjack.utils.CreationUtils.createMockDeck;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import blackjack.state.Blackjack;
-import blackjack.state.Bust;
-import blackjack.state.Normal;
-import blackjack.state.Ready;
-import blackjack.state.State;
+import blackjack.domain.card.Hand;
+import blackjack.domain.state.Blackjack;
+import blackjack.domain.state.Bust;
+import blackjack.domain.state.Normal;
+import blackjack.domain.state.Ready;
+import blackjack.domain.state.State;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -19,7 +28,7 @@ class StateTest {
 
         assertThat(hand.state()).isInstanceOf(Ready.class);
 
-        MockDeck mockDeck = createMockDeck(5, 9);
+        MockDeck mockDeck = createMockDeck(FIVE, NINE);
         hand.receiveCards(mockDeck);
 
         assertThat(hand.state()).isInstanceOf(Normal.class);
@@ -31,7 +40,7 @@ class StateTest {
 
         assertThat(hand.state()).isInstanceOf(Ready.class);
 
-        MockDeck mockDeck = createMockDeck(11, 10);
+        MockDeck mockDeck = createMockDeck(ACE, TEN);
         hand.receiveCards(mockDeck);
 
         assertThat(hand.state()).isInstanceOf(Blackjack.class);
@@ -43,10 +52,10 @@ class StateTest {
 
         assertThat(hand.state()).isInstanceOf(Ready.class);
 
-        hand.receiveCards(createMockDeck(2, 3));
+        hand.receiveCards(createMockDeck(TWO, THREE));
         assertThat(hand.state()).isInstanceOf(Normal.class);
 
-        hand.receiveCards(createMockDeck(6));
+        hand.receiveCards(createMockDeck(SIX));
         assertThat(hand.state()).isInstanceOf(Normal.class);
     }
 
@@ -57,13 +66,12 @@ class StateTest {
 
         assertThat(handState).isInstanceOf(Ready.class);
 
-        hand.receiveCards(new MockDeck(new Card(5), new Card(6)));
+        hand.receiveCards(createMockDeck(FIVE, SIX));
 
         assertThat(hand.state()).isInstanceOf(Normal.class);
 
-        hand.receiveCards(new MockDeck(new Card(10)));
+        hand.receiveCards(createMockDeck(TEN));
 
-        assertThat(hand.state()).isInstanceOf(Normal.class);
         assertThat(hand.state()).isInstanceOf(Normal.class);
     }
 
@@ -73,12 +81,12 @@ class StateTest {
 
         assertThat(hand.state()).isInstanceOf(Ready.class);
 
-        MockDeck mock = createMockDeck(8, 6);
+        MockDeck mock = createMockDeck(EIGHT, SIX);
         hand.receiveCards(mock);
 
         assertThat(hand.state()).isInstanceOf(Normal.class);
 
-        hand.receiveCards(createMockDeck(10));
+        hand.receiveCards(createMockDeck(TEN));
 
         assertThat(hand.state()).isInstanceOf(Bust.class);
     }
