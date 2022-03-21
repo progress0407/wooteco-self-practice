@@ -3,7 +3,7 @@ package blackjack.utils;
 import static blackjack.domain.card.Suit.CLOVER;
 
 import blackjack.domain.card.Card;
-import blackjack.MockDeck;
+import blackjack.domain.card.MockDeck;
 import blackjack.domain.card.Denomination;
 import java.util.ArrayList;
 import java.util.Arrays;

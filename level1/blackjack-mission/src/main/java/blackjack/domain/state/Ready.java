@@ -2,7 +2,7 @@ package blackjack.domain.state;
 
 import blackjack.domain.card.Hand;
 
-public class Ready extends UnFinished {
+public class Ready extends Playing {
 
     @Override
     public int receiveTimes() {

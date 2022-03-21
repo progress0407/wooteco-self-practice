@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import blackjack.participant.Dealer;
 import blackjack.participant.Player;
+import blackjack.service.Match;
 import java.util.Collection;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -36,11 +37,11 @@ class MatchTest {
         @Test
         @DisplayName("이길 경우 수익은 10000 원이다")
         void test1() {
-            dealer.receiveCards(createCard(JACK));
-            dealer.receiveCards(createCard(EIGHT));
+            dealer.receiveCard(createCard(JACK));
+            dealer.receiveCard(createCard(EIGHT));
 
-            player.receiveCards(createCard(QUEEN));
-            player.receiveCards(createCard(NINE));
+            player.receiveCard(createCard(QUEEN));
+            player.receiveCard(createCard(NINE));
 
             Match match = Match.from(dealer, List.of(player));
 
@@ -54,8 +55,8 @@ class MatchTest {
         @Test
         @DisplayName("블랙잭으로 이길 경우 수익은 15000 원이다")
         void test2() {
-            dealer.receiveCards(createMockDeck(JACK, EIGHT));
-            player.receiveCards(createMockDeck(QUEEN, ACE));
+            dealer.receiveCardsByDeck(createMockDeck(JACK, EIGHT));
+            player.receiveCardsByDeck(createMockDeck(QUEEN, ACE));
 
             Match match = Match.from(dealer, List.of(player));
 
@@ -69,8 +70,8 @@ class MatchTest {
         @Test
         @DisplayName("질 경우 수익은 -10000 원이다")
         void test3() {
-            dealer.receiveCards(createMockDeck(TEN, NINE));
-            player.receiveCards(createMockDeck(JACK, EIGHT));
+            dealer.receiveCardsByDeck(createMockDeck(TEN, NINE));
+            player.receiveCardsByDeck(createMockDeck(JACK, EIGHT));
 
             Match match = Match.from(dealer, List.of(player));
 

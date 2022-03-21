@@ -1,4 +1,4 @@
-package blackjack;
+package blackjack.service;
 
 import static blackjack.domain.state.StateContainer.BLACKJACK;
 import static blackjack.domain.state.StateContainer.BUST;

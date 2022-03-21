@@ -1,4 +1,4 @@
-package blackjack;
+package blackjack.service;
 
 import blackjack.participant.Dealer;
 import blackjack.participant.Player;

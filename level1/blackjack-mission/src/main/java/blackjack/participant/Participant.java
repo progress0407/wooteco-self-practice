@@ -3,20 +3,22 @@ package blackjack.participant;
 import blackjack.domain.card.Card;
 import blackjack.domain.card.Deck;
 import blackjack.domain.card.Hand;
+import java.rmi.MarshalException;
+import java.util.List;
 
 abstract public class Participant {
     private final String name;
-    private final Hand hand = new Hand();
+    protected final Hand hand = new Hand();
 
     public Participant(String name) {
         this.name = name;
     }
 
-    public void receiveCards(Card card) {
+    public void receiveCard(Card card) {
         hand.receiveCard(card);
     }
 
-    public void receiveCards(Deck deck) {
+    public void receiveCardsByDeck(Deck deck) {
         hand.receiveCards(deck);
     }
 
@@ -24,7 +26,15 @@ abstract public class Participant {
         return hand;
     }
 
+    public List<Card> cards() {
+        return hand.getCards();
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void nextState() {
+        hand.nextState();
     }
 }

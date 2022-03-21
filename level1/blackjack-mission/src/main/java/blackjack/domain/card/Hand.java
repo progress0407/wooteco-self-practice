@@ -2,7 +2,7 @@ package blackjack.domain.card;
 
 import static blackjack.domain.state.StateContainer.READY;
 
-import blackjack.MatchResult;
+import blackjack.service.MatchResult;
 import blackjack.domain.state.Finished;
 import blackjack.domain.state.State;
 import java.util.ArrayList;
@@ -85,6 +85,10 @@ public class Hand {
 
     public MatchResult match(Hand dealerHand) {
         return MatchResult.from(this, dealerHand);
+    }
+
+    public Card peekOneCard() {
+        return cards.get(0);
     }
 
     public List<Card> getCards() {

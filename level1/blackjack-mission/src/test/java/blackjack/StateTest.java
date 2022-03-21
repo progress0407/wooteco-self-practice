@@ -12,11 +12,13 @@ import static blackjack.utils.CreationUtils.createMockDeck;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import blackjack.domain.card.Hand;
+import blackjack.domain.card.MockDeck;
 import blackjack.domain.state.Blackjack;
 import blackjack.domain.state.Bust;
 import blackjack.domain.state.Normal;
 import blackjack.domain.state.Ready;
 import blackjack.domain.state.State;
+import blackjack.view.constant.Command;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -89,5 +91,14 @@ class StateTest {
         hand.receiveCards(createMockDeck(TEN));
 
         assertThat(hand.state()).isInstanceOf(Bust.class);
+    }
+
+    @Test
+    void test() {
+        Command hit = Command.of("y");
+
+        Hand hand = new Hand();
+        State handState = hand.state();
+
     }
 }
