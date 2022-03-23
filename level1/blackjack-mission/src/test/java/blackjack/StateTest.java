@@ -15,7 +15,7 @@ import blackjack.domain.card.Hand;
 import blackjack.domain.card.MockDeck;
 import blackjack.domain.state.Blackjack;
 import blackjack.domain.state.Bust;
-import blackjack.domain.state.Normal;
+import blackjack.domain.state.Running;
 import blackjack.domain.state.Ready;
 import blackjack.domain.state.State;
 import blackjack.view.constant.Command;
@@ -33,7 +33,7 @@ class StateTest {
         MockDeck mockDeck = createMockDeck(FIVE, NINE);
         hand.receiveCards(mockDeck);
 
-        assertThat(hand.state()).isInstanceOf(Normal.class);
+        assertThat(hand.state()).isInstanceOf(Running.class);
     }
 
     @Test
@@ -55,10 +55,10 @@ class StateTest {
         assertThat(hand.state()).isInstanceOf(Ready.class);
 
         hand.receiveCards(createMockDeck(TWO, THREE));
-        assertThat(hand.state()).isInstanceOf(Normal.class);
+        assertThat(hand.state()).isInstanceOf(Running.class);
 
         hand.receiveCards(createMockDeck(SIX));
-        assertThat(hand.state()).isInstanceOf(Normal.class);
+        assertThat(hand.state()).isInstanceOf(Running.class);
     }
 
     @Test
@@ -70,11 +70,11 @@ class StateTest {
 
         hand.receiveCards(createMockDeck(FIVE, SIX));
 
-        assertThat(hand.state()).isInstanceOf(Normal.class);
+        assertThat(hand.state()).isInstanceOf(Running.class);
 
         hand.receiveCards(createMockDeck(TEN));
 
-        assertThat(hand.state()).isInstanceOf(Normal.class);
+        assertThat(hand.state()).isInstanceOf(Running.class);
     }
 
     @Test
@@ -86,7 +86,7 @@ class StateTest {
         MockDeck mock = createMockDeck(EIGHT, SIX);
         hand.receiveCards(mock);
 
-        assertThat(hand.state()).isInstanceOf(Normal.class);
+        assertThat(hand.state()).isInstanceOf(Running.class);
 
         hand.receiveCards(createMockDeck(TEN));
 

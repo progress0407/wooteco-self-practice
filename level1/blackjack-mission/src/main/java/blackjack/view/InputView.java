@@ -25,4 +25,10 @@ public class InputView {
         out.println(name + "의 배팅 금액은?");
         return SCANNER.nextInt();
     }
+
+    public static void inputCard() {
+        out.println("pobi는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)");
+        SCANNER.nextInt();
+//        return ;
+    }
 }

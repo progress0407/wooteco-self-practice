@@ -6,7 +6,7 @@ import static blackjack.view.constant.Command.STAY;
 import blackjack.domain.card.Hand;
 import blackjack.view.constant.Command;
 
-public class Normal extends Playing {
+public class Running extends Playing {
 
     @Override
     public int receiveTimes() {

@@ -26,6 +26,14 @@ public class BlackjackGame {
         deck.shuffle();
 
         initTwoCard(dealer, players, deck);
+
+
+        // while
+        for (Player player : players) {
+            InputView.inputCard();
+        }
+
+
     }
 
     private void initTwoCard(Dealer dealer, List<Player> players, Deck deck) {

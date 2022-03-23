@@ -15,6 +15,6 @@ public class Ready extends Playing {
             hand.setState(StateContainer.BLACKJACK);
             return;
         }
-        hand.setState(StateContainer.NORMAL);
+        hand.setState(StateContainer.RUNNING);
     }
 }

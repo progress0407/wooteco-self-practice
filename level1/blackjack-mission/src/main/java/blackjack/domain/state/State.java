@@ -6,5 +6,7 @@ public interface State {
 
     int receiveTimes();
 
+    boolean isFinished();
+
     void nextState(Hand hand);
 }
