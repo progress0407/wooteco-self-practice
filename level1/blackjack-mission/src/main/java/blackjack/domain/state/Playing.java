@@ -1,5 +1,7 @@
 package blackjack.domain.state;
 
+import static blackjack.domain.state.StateContainer.RUNNING;
+
 import blackjack.domain.card.Hand;
 
 public abstract class Playing implements State {
@@ -16,6 +18,11 @@ public abstract class Playing implements State {
 
     @Override
     public void nextState(Hand hand) {
-        
+
+    }
+
+    @Override
+    public void setStateRunning(Hand hand) {
+
     }
 }

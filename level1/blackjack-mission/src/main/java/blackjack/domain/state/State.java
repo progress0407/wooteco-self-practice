@@ -9,4 +9,8 @@ public interface State {
     boolean isFinished();
 
     void nextState(Hand hand);
+
+    void setStateRunning(Hand hand);
+
+    void setStateStop(Hand hand);
 }

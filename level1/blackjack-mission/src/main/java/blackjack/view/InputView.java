@@ -2,6 +2,7 @@ package blackjack.view;
 
 import static java.lang.System.out;
 
+import blackjack.constant.Command;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -23,12 +24,12 @@ public class InputView {
 
     public static int inputBettingAmount(String name) {
         out.println(name + "의 배팅 금액은?");
-        return SCANNER.nextInt();
+        return Integer.parseInt(SCANNER.nextLine());
     }
 
-    public static void inputCard() {
-        out.println("pobi는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)");
-        SCANNER.nextInt();
-//        return ;
+    public static Command moreCard(String playerName) {
+        out.println(playerName + "는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)");
+        String input = SCANNER.nextLine();
+        return Command.of(input);
     }
 }

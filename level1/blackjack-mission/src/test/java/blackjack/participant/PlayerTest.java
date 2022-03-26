@@ -5,7 +5,9 @@ import static blackjack.domain.card.Denomination.FIVE;
 import static blackjack.domain.card.Denomination.SIX;
 import static blackjack.domain.card.Denomination.TEN;
 import static blackjack.domain.state.StateContainer.BLACKJACK;
+import static blackjack.domain.state.StateContainer.READY;
 import static blackjack.domain.state.StateContainer.RUNNING;
+import static blackjack.domain.state.StateContainer.STOP;
 import static blackjack.utils.CreationUtils.createCard;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,7 +26,7 @@ class PlayerTest {
         player.receiveCard(createCard(SIX));
         player.receiveCard(createCard(FIVE));
 
-        player.nextState();
+        player.setStateRunning();
 
         assertThat(player.state()).isEqualTo(RUNNING);
     }
@@ -39,8 +41,35 @@ class PlayerTest {
         player.receiveCard(createCard(ACE));
         player.receiveCard(createCard(TEN));
 
-        player.nextState();
+        player.setStateRunning();
 
         assertThat(player.state()).isEqualTo(BLACKJACK);
+    }
+
+    @DisplayName("READY -> BLACKJACK")
+    @Test
+    void test3() {
+        Player player = new Player("philz");
+
+        assertThat(player.state()).isEqualTo(READY);
+
+        player.receiveCard(createCard(ACE));
+        player.receiveCard(createCard(TEN));
+
+        player.setStateRunning();
+
+        assertThat(player.state()).isEqualTo(BLACKJACK);
+    }
+
+    @DisplayName("READY -> STOP")
+    @Test
+    void test4() {
+        Player player = new Player("philz");
+
+        assertThat(player.state()).isEqualTo(READY);
+
+        player.setStateStop();
+
+        assertThat(player.state()).isEqualTo(STOP);
     }
 }

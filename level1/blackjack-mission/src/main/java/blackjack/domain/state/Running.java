@@ -1,10 +1,10 @@
 package blackjack.domain.state;
 
 import static blackjack.domain.state.StateContainer.BUST;
-import static blackjack.view.constant.Command.STAY;
+import static blackjack.domain.state.StateContainer.RUNNING;
+import static blackjack.domain.state.StateContainer.STOP;
 
 import blackjack.domain.card.Hand;
-import blackjack.view.constant.Command;
 
 public class Running extends Playing {
 
@@ -20,9 +20,13 @@ public class Running extends Playing {
         }
     }
 
-    public void nextState(Hand hand, Command command) {
-        if (command == STAY) {
-            hand.setState(BUST);
-        }
+    @Override
+    public void setStateRunning(Hand hand) {
+        hand.setState(RUNNING);
+    }
+
+    @Override
+    public void setStateStop(Hand hand) {
+        hand.setState(STOP);
     }
 }

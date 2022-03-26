@@ -3,7 +3,7 @@ package blackjack.participant;
 import blackjack.domain.card.Card;
 import blackjack.domain.card.Deck;
 import blackjack.domain.card.Hand;
-import java.rmi.MarshalException;
+import blackjack.domain.state.State;
 import java.util.List;
 
 abstract public class Participant {
@@ -22,19 +22,31 @@ abstract public class Participant {
         hand.receiveCards(deck);
     }
 
-    public Hand getHand() {
-        return hand;
+    abstract public void nextState();
+
+    public void setStateStop() {
+        hand.setStateStop();
     }
+
+    public State state() {
+        return hand.state();
+    }
+
+    public int score() {
+        return hand.score();
+    }
+
+    abstract public boolean isFinished();
 
     public List<Card> cards() {
         return hand.getCards();
     }
 
-    public String getName() {
-        return name;
+    public Hand getHand() {
+        return hand;
     }
 
-    public void nextState() {
-        hand.nextState();
+    public String getName() {
+        return name;
     }
 }

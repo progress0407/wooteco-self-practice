@@ -1,7 +1,5 @@
 package blackjack.participant;
 
-import blackjack.domain.state.State;
-
 public class Player extends Participant {
 
     private int bettingAmount;
@@ -43,11 +41,21 @@ public class Player extends Participant {
         this.bettingAmount = bettingAmount;
     }
 
-    public State state() {
-        return super.hand.state();
+    public void nextState() {
+        hand.nextState();
     }
+
+    public void setStateRunning() {
+        hand.setStateRunning();
+    }
+
 
     public int getBettingAmount() {
         return bettingAmount;
+    }
+
+    @Override
+    public boolean isFinished() {
+        return state().isFinished();
     }
 }

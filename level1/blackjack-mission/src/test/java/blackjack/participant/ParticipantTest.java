@@ -21,9 +21,19 @@ class ParticipantTest {
 
     private Participant getParticipant(final String name) {
         return new Participant(name) {
+
             @Override
             public void receiveCard(Card card) {
                 super.receiveCard(card);
+            }
+
+            @Override
+            public void nextState() {
+            }
+
+            @Override
+            public boolean isFinished() {
+                return false;
             }
         };
     }

@@ -1,5 +1,10 @@
 package blackjack.controller;
 
+import static blackjack.constant.Command.HIT;
+import static blackjack.constant.Command.STAY;
+import static java.util.stream.Collectors.toList;
+
+import blackjack.constant.Command;
 import blackjack.domain.card.Card;
 import blackjack.domain.card.Deck;
 import blackjack.domain.card.factory.CardFactory;
@@ -27,13 +32,23 @@ public class BlackjackGame {
 
         initTwoCard(dealer, players, deck);
 
-
         // while
         for (Player player : players) {
-            InputView.inputCard();
+            Command command = STAY;
+            while (!player.isFinished() && HIT == (command = InputView.moreCard(player.getName()))) {
+                player.receiveCard(deck.drawCard());
+                player.nextState();
+                OutputView.printPlayerCards(player);
+            }
+            if (command == STAY) {
+                player.setStateStop();
+            }
         }
 
-
+        while (!dealer.isFinished()) {
+            dealer.receiveCard(deck.drawCard());
+            dealer.nextState();
+        }
     }
 
     private void initTwoCard(Dealer dealer, List<Player> players, Deck deck) {
@@ -72,6 +87,6 @@ public class BlackjackGame {
                         .name(playerName)
                         .bettingAmount(bettingPlayers.get(playerName))
                         .build())
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 }

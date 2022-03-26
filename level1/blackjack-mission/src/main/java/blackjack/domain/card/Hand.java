@@ -91,6 +91,14 @@ public class Hand {
         return cards.get(0);
     }
 
+    public void setStateRunning() {
+        state.setStateRunning(this);
+    }
+
+    public void setStateStop() {
+        state.setStateStop(this);
+    }
+
     public List<Card> getCards() {
         return Collections.unmodifiableList(cards);
     }
